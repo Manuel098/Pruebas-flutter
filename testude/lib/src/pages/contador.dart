@@ -55,10 +55,10 @@ class _CounterState extends State<Counter>{
     );
   }
 
-  void add() =>setState(()=>_count++);
+  void add() => setState(() => ++_count);
 
-  void remove() =>setState(()=>_count--);
+  void remove() => setState(() => --_count);
 
-  void restart() =>setState(()=>_count=0);
+  void restart() => setState(() => _count=0);
 
 }
