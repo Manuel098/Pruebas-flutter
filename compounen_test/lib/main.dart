@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:compounen_test/src/pages/home_page.dart';
 import './src/pages/home_temp.dart';
 import './src/styles.dart';
  
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Compounent',
       debugShowCheckedModeBanner: false,
-      home: HomePageTemp()
+      home: HomePage()
     );
   }
 }
