@@ -15,26 +15,26 @@ class HomePageTemp extends StatelessWidget {
     );
   }
 
-  List<Widget> _makeList(){
-    List<Widget> myList = List<Widget>();
+  // List<Widget> _makeList(){
+  //   List<Widget> myList = List<Widget>();
 
-    for (String option in options) {
-      myList..add(Divider(height: 12, endIndent: 1000,))..add(
-        Card(
-          child: ListTile(
-            title: Text('This is the title of $option'),
-            subtitle: Text('This is a test ListTile'),
-            onTap: (){
-              print('object');
-            },
-          ),
-          color: Colors.white70,
-          elevation: 8,
-        )
-      );
-    }
-    return myList;
-  }
+  //   for (String option in options) {
+  //     myList..add(Divider(height: 12, endIndent: 1000,))..add(
+  //       Card(
+  //         child: ListTile(
+  //           title: Text('This is the title of $option'),
+  //           subtitle: Text('This is a test ListTile'),
+  //           onTap: (){
+  //             print('object');
+  //           },
+  //         ),
+  //         color: Colors.white70,
+  //         elevation: 8,
+  //       )
+  //     );
+  //   }
+  //   return myList;
+  // }
   
   List <Column> _makeShortList() => options.map((object){
     return Column(

@@ -15,7 +15,6 @@ class Home extends StatelessWidget {
   }
 
   Widget _list() {
-
     return FutureBuilder(
       future: myMenuProv.cargarData(),
       initialData: [],
@@ -32,7 +31,7 @@ class Home extends StatelessWidget {
         Card(
           child: ListTile(
             title: Text(item['text']),
-            subtitle: Text('This is the rout at ${item['ruta']}'),
+            subtitle: Text(item['description']),
             onTap: (){
               Navigator.pushNamed(context, '/${item['route']}');
             },

@@ -1,8 +1,9 @@
 {
     "nameApp":"Components",
     "routs":[
-        {"route":"alert","icon":"add_alert","text":"Alertas"},
-        {"route":"avatar","icon":"accessibility","text":"Avatars"},
-        {"route":"card","icon":"folder_open","text":"Tarjetas"}
+        {"route":"alert","icon":"add_alert","text":"Alertas", "description":"Pagina de alerta generica"},
+        {"route":"avatar","icon":"accessibility","text":"Avatars", "description":"Pagina de Circle Avatars"},
+        {"route":"card","icon":"folder_open","text":"Tarjetas", "description":"Pagina de Tarjetas"},
+        {"route":"targetsAnimate","icon":"card_animade","text":"Tarjetas Animadas", "description":"Pagina de Tarjetas animadas"}
     ]
 }
