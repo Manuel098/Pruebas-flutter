@@ -1,11 +1,47 @@
 {
-    "nameApp":"Components",
-    "routs":[
-        {"route":"alert","icon":"add_alert","text":"Alertas", "description":"Pagina de alerta generica"},
-        {"route":"avatar","icon":"accessibility","text":"Avatars", "description":"Pagina de Circle Avatars"},
-        {"route":"card","icon":"folder_open","text":"Tarjetas", "description":"Pagina de Tarjetas"},
-        {"route":"targetsAnimate","icon":"card_animade","text":"Tarjetas Animadas", "description":"Pagina de Tarjetas animadas"},
-        {"route":"input","icon":"input","text":"Ejemplo de inputs", "description":"Algunos ejemplos de inputs"},
-        {"route":"bomberman","icon":"card_animade","text":"Bomberman", "description":"Ejercicio Bomberman"}
-    ]
+  "nameApp": "Components",
+  "routs": [
+    {
+      "route": "alert",
+      "icon": "add_alert",
+      "text": "Alertas",
+      "description": "Pagina de alerta generica"
+    },
+    {
+      "route": "avatar",
+      "icon": "accessibility",
+      "text": "Avatars",
+      "description": "Pagina de Circle Avatars"
+    },
+    {
+      "route": "card",
+      "icon": "folder_open",
+      "text": "Tarjetas",
+      "description": "Pagina de Tarjetas"
+    },
+    {
+      "route": "targetsAnimate",
+      "icon": "card_animade",
+      "text": "Tarjetas Animadas",
+      "description": "Pagina de Tarjetas animadas"
+    },
+    {
+      "route": "input",
+      "icon": "input",
+      "text": "Ejemplo de inputs",
+      "description": "Algunos ejemplos de inputs"
+    },
+    {
+      "route": "slider",
+      "icon": "slid",
+      "text": "Slider",
+      "description": "Prueba Slider"
+    },
+    {
+      "route": "bomberman",
+      "icon": "card_animade",
+      "text": "Bomberman",
+      "description": "Ejercicio Bomberman"
+    }
+  ]
 }
