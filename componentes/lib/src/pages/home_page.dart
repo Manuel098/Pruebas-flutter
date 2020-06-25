@@ -1,3 +1,4 @@
+import 'package:componentes/src/modals/setting_modal.dart';
 import 'package:componentes/src/services/setingService.dart';
 import 'package:flutter/material.dart';
 
@@ -21,12 +22,12 @@ class _HomeState extends State<Home> {
         title: Text('Components'),
         actions: <Widget>[
           MaterialButton(
-            // color: Colors.teal[50],
-            onPressed: (() {
-              setState(() {
-                homeSetting.setTitleSize = 100;
-              });
+            // color: Colors.teal[50],s
+            onPressed: (() async {
+              shouSettingAlert(cont: context, sett: homeSetting)
+                  .then((value) => setState(() {}));
             }),
+
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -77,7 +78,8 @@ class _HomeState extends State<Home> {
                   fontSize: homeSetting.getTitleSize,
                   fontWeight: homeSetting.getFontW),
             ),
-            subtitle: Text(item['description']),
+            subtitle: Text(item['description'],
+                style: TextStyle(fontSize: homeSetting.getTitleSize - 10)),
             onTap: () {
               Navigator.pushNamed(context, '/${item['route']}');
             },
