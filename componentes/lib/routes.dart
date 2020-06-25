@@ -1,3 +1,4 @@
+import 'package:componentes/src/pages/listview_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:componentes/src/pages/bomberman.dart';
@@ -18,6 +19,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     '/targetsAnimate': (BuildContext context) => AnimatedContainerPage(),
     '/bomberman': (BuildContext context) => Bomberman(),
     '/input': (BuildContext context) => NewInput(),
+    '/list': (BuildContext context) => ListPage(),
     '/slider': (BuildContext context) => SliderPage()
   };
 }

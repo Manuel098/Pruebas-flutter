@@ -38,6 +38,12 @@
       "description": "Prueba Slider"
     },
     {
+      "route": "list",
+      "icon": "list",
+      "text": "Lista",
+      "description": "Prueba de ListView Builder"
+    },
+    {
       "route": "bomberman",
       "icon": "card_animade",
       "text": "Bomberman",

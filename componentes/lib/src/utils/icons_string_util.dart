@@ -5,6 +5,7 @@ final _icons = <String, IconData>{
   'accessibility': Icons.accessibility,
   'folder_open': Icons.folder_open,
   'card_animade': Icons.crop_rotate,
+  'list': Icons.list,
   'slid': Icons.tune,
   'input': Icons.input
 };
