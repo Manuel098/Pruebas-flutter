@@ -3,6 +3,7 @@ import 'package:movie_galery/src/models/movie_model.dart';
 import 'package:movie_galery/src/providers/movies_provider.dart';
 import 'package:movie_galery/src/source_widget/card_swiper_widget.dart';
 import 'package:movie_galery/src/source_widget/movie_horizontal_widget.dart';
+import 'package:movie_galery/src/source_widget/search/search_delegate.dart';
 import 'package:movie_galery/src/utils/words.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,11 +22,13 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.cyan[50],
         actions: <Widget>[
           IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Colors.indigo[900],
-              ),
-              onPressed: () => {})
+            icon: Icon(
+              Icons.search,
+              color: Colors.indigo[900],
+            ),
+            onPressed: () => {
+              showSearch(context: context, query: '', delegate: DataSearch())
+            })
         ],
       ),
       

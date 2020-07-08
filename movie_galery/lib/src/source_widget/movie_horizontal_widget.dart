@@ -36,17 +36,21 @@ class HorizontalMovies extends StatelessWidget {
   }
 
   GestureDetector _makeTarjet({@required BuildContext context, @required Movie movie, @required double height}) {
+    movie.uniqueId = '${movie.id}-horizontalList';
     final tarjet = Container(
       margin: EdgeInsets.only(right:5.0),
       child: Column(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: AssetImage('assets/img/loading.gif'), 
-              image: NetworkImage(movie.getPosterImg()),
-              fit: BoxFit.cover,
-              height: height * 0.20,
+          Hero(
+            tag: movie.uniqueId,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: AssetImage('assets/img/loading.gif'), 
+                image: NetworkImage(movie.getPosterImg()),
+                fit: BoxFit.cover,
+                height: height * 0.20,
+              ),
             ),
           ),
           Container(

@@ -11,7 +11,7 @@ class MoviesProvider {
   String _language = 'es-Mx';
   String _region = 'Mx';
   bool _loading = false;
-  int _page = 0;
+  int _pagePopulars = 0;
 
   List<Movie> _populars = List<Movie>();
 
@@ -50,10 +50,9 @@ class MoviesProvider {
   void getPopulars() async{
     if(!_loading){
       _loading = true;
-      print('cargandoSiguientes $_page');
-      _page++;
+      _pagePopulars++;
       final ruta = Uri.https(_url, '3/movie/popular',{
-        'page' : _page.toString(),
+        'page' : _pagePopulars.toString(),
         'language': _language,
         'api_key': _apiKey,
         'region': _region
@@ -93,4 +92,14 @@ class MoviesProvider {
     return movies.items;
   }
 
+  Future<List<Movie>> fetchMovies(String query) async{
+    final ruta = Uri.https(_url, '3/search/movie',{
+      'include_adult' : 'true',
+      'language' : _language,
+      'api_key' : _apiKey,
+      'region' : _region,
+      'query' : query
+    });
+    return await _response( ruta );
+  }
 }

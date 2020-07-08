@@ -2,7 +2,6 @@ import 'package:movie_galery/src/providers/movies_provider.dart';
 import 'package:movie_galery/src/source_widget/actors_list.dart';
 import 'package:movie_galery/src/models/movie_model.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_galery/src/source_widget/video_player.dart';
 
 class MovieInfo extends StatelessWidget {
   final _movProv = MoviesProvider();
@@ -22,8 +21,7 @@ class MovieInfo extends StatelessWidget {
               _posterTitle(mov, _screenSize, context),
               _description(mov, _screenSize, context),
               Text( 'Elenco', style: Theme.of(context).textTheme.headline5, textAlign: TextAlign.center,),
-              _makeActors(mov, _screenSize, context),
-              _getTrailer(mov, _screenSize, context)
+              _makeActors(mov, _screenSize, context)
             ])
           )
         ],
@@ -35,11 +33,14 @@ class MovieInfo extends StatelessWidget {
     padding: EdgeInsets.symmetric( horizontal:20 ),
     child: Row(
       children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image(
-            image: NetworkImage(movie.getPosterImg()),
-            height: scSize.height * 0.2,
+        Hero(
+          tag: movie.uniqueId,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image(
+              image: NetworkImage(movie.getPosterImg()),
+              height: scSize.height * 0.2,
+            ),
           ),
         ),
         SizedBox(width: scSize.width * 0.03),
@@ -81,20 +82,6 @@ class MovieInfo extends StatelessWidget {
         : Center(child: CircularProgressIndicator(),);  
     },
   );
-
-  FutureBuilder _getTrailer(Movie mov, Size scSize, BuildContext cont) => FutureBuilder(
-    future: _movProv.getTrailer(mov.id.toString()),
-    builder: (BuildContext cont, AsyncSnapshot snapshot){
-      
-      return snapshot.hasData ? _showVideo(snapshot.data)
-        : Center(child: CircularProgressIndicator(),);  
-    },
-  );
-
-  YoutubePlayerView _showVideo(Map<String, String>data){
-    print(data);
-    return YoutubePlayerView();
-  }
 
   Container _description(Movie mov, Size scSize, BuildContext cont) => Container(
     padding: EdgeInsets.symmetric(horizontal: scSize.width * 0.05, vertical: scSize.height*0.02),
