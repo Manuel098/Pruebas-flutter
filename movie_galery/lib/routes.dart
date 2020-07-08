@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_galery/src/pages/home_page.dart';
+import 'package:movie_galery/src/pages/movie_info.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
     '/': (BuildContext context) => HomePage(),
+    '/info': (BuildContext context) => MovieInfo(),
   };
 }

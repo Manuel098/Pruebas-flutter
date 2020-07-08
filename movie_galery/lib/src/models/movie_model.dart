@@ -63,7 +63,12 @@ class Movie {
   }
 
   String getPosterImg(){
-    return posterPath == null ? 'https://uxwing.com/wp-content/themes/uxwing/download/07-design-and-development/image-not-found.png'
+    return posterPath == null ? 'no image'
       :'https://image.tmdb.org/t/p/w500$posterPath';
+  }
+
+  String getBackgroundImg(){
+    return backdropPath == null ? 'no image'
+      :'https://image.tmdb.org/t/p/w500$backdropPath';
   }
 }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:movie_galery/src/models/movie_model.dart';
 import 'package:movie_galery/src/providers/movies_provider.dart';
 import 'package:movie_galery/src/source_widget/card_swiper_widget.dart';
+import 'package:movie_galery/src/source_widget/movie_horizontal_widget.dart';
+import 'package:movie_galery/src/utils/words.dart';
 
 class HomePage extends StatelessWidget {
   final MoviesProvider movProv = MoviesProvider();
 
   @override
   Widget build(BuildContext context) {
+    movProv.getPopulars();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -24,10 +28,14 @@ class HomePage extends StatelessWidget {
               onPressed: () => {})
         ],
       ),
-      // body: SafeArea(child: Text('Home')),
+      
       body: Container(
         child: Column(
-          children: <Widget>[_swiperTarjet()],
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            _swiperTarjet(),
+            _footer(context)
+          ],
         ),
       ),
     );
@@ -49,4 +57,23 @@ class HomePage extends StatelessWidget {
     
 
   }
+
+  _footer(BuildContext cont) => Container(
+    width: double.infinity,
+    child: Column(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(bottom:20),
+          child: Text(getWord('spPopular'), style: Theme.of(cont).textTheme.subtitle1)
+        ),
+        StreamBuilder(
+          stream: movProv.popularsStream,
+          builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
+              return snapshot.hasData ? HorizontalMovies(movies: snapshot.data, nextPage: movProv.getPopulars,)
+                : Center(child: CircularProgressIndicator());
+          },
+        ),
+      ],
+    ),
+  );
 }
