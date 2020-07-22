@@ -10,6 +10,7 @@ class MovieInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final Movie mov = ModalRoute.of(context).settings.arguments;
     final Size _screenSize = MediaQuery.of(context).size;
+    print(mov.id);
     
     return Scaffold(
       body: CustomScrollView(
