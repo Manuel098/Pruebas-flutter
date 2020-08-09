@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:659845582481:android:e1f4d4ec0163ecad82f930",
+        "mobilesdk_app_id": "1:659845582481:android:7c991112a1bf0df882f930",
         "android_client_info": {
-          "package_name": "com.example.movie_galery"
+          "package_name": "com.manuelchristianmoviles.movie_galery"
         }
       },
       "oauth_client": [
