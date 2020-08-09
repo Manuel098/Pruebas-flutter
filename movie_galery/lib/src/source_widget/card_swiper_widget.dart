@@ -11,7 +11,7 @@ class CardSwiper extends StatelessWidget {
     final _screenSize = MediaQuery.of(context).size;
 
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 10),
       child: Swiper(
         onTap: (int i){
           Navigator.pushNamed(context, '/info', arguments: movies[i]);

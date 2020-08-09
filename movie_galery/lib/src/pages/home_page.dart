@@ -6,7 +6,14 @@ import 'package:movie_galery/src/source_widget/movie_horizontal_widget.dart';
 import 'package:movie_galery/src/source_widget/search/search_delegate.dart';
 import 'package:movie_galery/src/utils/words.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final MoviesProvider movProv = MoviesProvider();
 
   @override
@@ -17,14 +24,14 @@ class HomePage extends StatelessWidget {
         title: Text(
           'Peliculas en Cines',
           style:
-              TextStyle(color: Colors.indigo[900], fontWeight: FontWeight.w500),
+              TextStyle(color: Colors.cyan[50], fontWeight: FontWeight.w500),
         ),
-        backgroundColor: Colors.cyan[50],
+        backgroundColor: Colors.indigo[900],
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.search,
-              color: Colors.indigo[900],
+              color: Colors.cyan[50],
             ),
             onPressed: () => {
               showSearch(context: context, query: '', delegate: DataSearch())
@@ -34,7 +41,7 @@ class HomePage extends StatelessWidget {
       
       body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _swiperTarjet(),
             _footer(context)
