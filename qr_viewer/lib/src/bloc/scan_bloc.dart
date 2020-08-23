@@ -10,7 +10,7 @@ class ScansBloc{
   } 
 
   ScansBloc._(){
-    // GET Scans from the DB
+    getScans();
   }
 
   Stream <List<ScanModel>> get scanStream => _scansController.stream;
@@ -18,6 +18,8 @@ class ScansBloc{
   dispose(){
     _scansController?.close();
   }
+
+  // Events
 
   postScan(ScanModel scan) async{
     DBProvider.db.newScan(scan);

@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:qr_viewer/src/providers/db_provider.dart';
+import 'package:qr_viewer/src/bloc/scan_bloc.dart';
+import 'package:qr_viewer/src/models/scan_model.dart';
 import 'package:qr_viewer/src/pages/address_page.dart';
 import 'package:qr_viewer/src/pages/maps_page.dart';
 import 'package:qr_viewer/src/utils/colors.dart';
-// import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qr_viewer/src/utils/utils.dart' as utils;
+import 'package:barcode_scan/barcode_scan.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,14 +15,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final scansBloc = ScansBloc();
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _makeAppBarr('QR Scaner', context),
       bottomNavigationBar: _bottomBar(context),
       floatingActionButton: FloatingActionButton(
-        onPressed: _scanQR, 
+        onPressed: () => _scanQR(context), 
         child: Icon(Icons.filter_center_focus,size: 35, color: getConfigColor(color: 'secondary')),
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -32,24 +38,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Functions
-  _scanQR() async {
+  _scanQR(BuildContext cont) async {
     // https://pub.dev/packages/barcode_scan
     // geo:40.6096509795937,-74.15151014765628
     // MATMSG:TO:man@mail.com;SUB:resepcion;BODY:Hola compa te mando este email;;
     // WIFI:S:elrayan;T:WPA;P:qpex;;
 
-    dynamic futureString ='https://pub.dev/packages/barcode_scan';
+    // ScanResult futureResult;
+    String futureResult="asd";
  
     // try {
-    //   futureString = await BarcodeScanner.scan();
+    //   futureResult = await BarcodeScanner.scan();
     // }catch(e){
-    //   futureString=e.toString();
+    //   print(e.toString());
     // }
 
-    if(futureString != null){
-      final scan = ScanModel(value: futureString );
-      DBProvider.db.newScan(scan);
-      setState(() {});
+    if(futureResult != null){
+      // final scan = ScanModel(value: futureResult.rawContent );
+      final scan = ScanModel(value: "geo:40.6096509795937,-74.15151014765628");
+      scansBloc.postScan(scan);
+      
+      Platform.isIOS?
+        Future.delayed(Duration(milliseconds : 750),(){
+          utils.openScan(scan, cont);
+        }): utils.openScan(scan, cont);
     }
   }
 
@@ -72,10 +84,7 @@ class _HomePageState extends State<HomePage> {
     title: Text(title, style: Theme.of(cont).textTheme.headline4,),
     centerTitle: true,
     actions: <Widget>[
-      IconButton(icon: Icon(Icons.delete_forever), onPressed: (){
-        DBProvider.db.deleteAll();
-        setState(() { });
-      })
+      IconButton(icon: Icon(Icons.delete_forever), onPressed: scansBloc.deleteAll)
     ],
   );
 

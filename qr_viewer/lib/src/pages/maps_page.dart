@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:qr_viewer/src/providers/db_provider.dart';
+import 'package:qr_viewer/src/bloc/scan_bloc.dart';
+import 'package:qr_viewer/src/models/scan_model.dart';
 import 'package:qr_viewer/src/utils/colors.dart';
+import 'package:qr_viewer/src/utils/utils.dart' as utils;
 
 class MapsPage extends StatelessWidget {
+  final scansBloc = new ScansBloc();
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ScanModel>>(
-      future: DBProvider.db.getAllScans(),
+    return StreamBuilder<List<ScanModel>>(
+      stream: scansBloc.scanStream,
       builder: ( BuildContext cont, AsyncSnapshot<List<ScanModel>> snapshot ){
         if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
 
         final List<ScanModel> scans = snapshot.data;
-        return scans.length == 0 ? _noData(context) : _body(scans);
+        return scans.length == 0 ? _noData(context) : _body(scans, context);
 
       },
     );
@@ -24,12 +28,12 @@ class MapsPage extends StatelessWidget {
     ],crossAxisAlignment: CrossAxisAlignment.center, mainAxisSize: MainAxisSize.min,)
   );
 
-  ListView _body(List<ScanModel> scans) => ListView.builder(
+  ListView _body(List<ScanModel> scans, BuildContext context) => ListView.builder(
     itemCount: scans.length,
     itemBuilder: (BuildContext cont, int i) => 
     Dismissible(
       key: UniqueKey(),
-      onDismissed: (direction) => DBProvider.db.deleteScan(scans[i].id),
+      onDismissed: (direction) => scansBloc.deleteScan(scans[i].id),
       child: Card(
         color: getConfigColor(color: 'label'),
         margin: EdgeInsets.symmetric(vertical: 3),
@@ -38,12 +42,13 @@ class MapsPage extends StatelessWidget {
           leading: Icon(Icons.cloud_queue, color: Theme.of(cont).primaryColor,),
           title: Text(scans[i].value, style: Theme.of(cont).textTheme.bodyText1,),
           subtitle: Text('ID: ${scans[i].id}, Tipo: ${scans[i].type}'),
-          trailing: IconButton(
-            icon: Icon(Icons.keyboard_arrow_right, color: getConfigColor(color: 'h1'), size: 35,),
-            onPressed: (){
-              print('Alooo');
-            }
-          )
+          trailing: Icon(
+            Icons.keyboard_arrow_right, 
+            color: getConfigColor(color: 'h1'), 
+            size: 35),
+          onTap: (){
+            utils.openScan(scans[i],context);
+          }
         ),
       ),
     )
